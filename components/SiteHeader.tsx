@@ -12,11 +12,13 @@ const HeaderLink = ({
   slug,
   name,
   scrolling,
+  insideResponsiveMenu,
   selected = false,
 }: {
   slug: string
   name: string
   scrolling: boolean
+  insideResponsiveMenu: boolean
   selected?: boolean
 }) => {
   return (
@@ -25,9 +27,9 @@ const HeaderLink = ({
         <a
           className={
             selected
-              ? `inline-block py-2 px-4 text-lg text-white underline underline-offset-8 decoration-2 font-bold pointer-events-none`
+              ? `inline-block py-2 px-4 text-lg ${insideResponsiveMenu ? 'text-black' : 'text-white'} underline underline-offset-8 decoration-2 font-bold pointer-events-none`
               : `inline-block py-2 px-4 text-lg ${
-                  scrolling ? 'text-white' : 'text-black'
+                  scrolling && !insideResponsiveMenu ? 'text-white' : 'text-black'
                 } no-underline hover:underline hover:underline-offset-8 hover:decoration-2 font-bold`
           }
         >
@@ -78,7 +80,7 @@ export const SiteHeader = (props: SiteHeaderProps) => {
             <a
               className={`toggleColour ${
                 hamburgerOpen ? 'text-gray-700' : 'text-white'
-              } no-underline hover:no-underline font-bold text-2xl lg:text-4xl`}
+              } no-underline hover:no-underline font-bold text-2xl lg:text-3xl`}
             >
               {/* CC License https://www.svgrepo.com/svg/56030/package */}
               <svg x="0px" y="0px" viewBox="0 0 512.005 512.005" className="h-8 fill-current inline pr-6">
@@ -118,12 +120,13 @@ export const SiteHeader = (props: SiteHeaderProps) => {
         >
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
             {miscellaneousPageLinks.map((p) => (
-              <HeaderLink key={p.slug} scrolling={scrolling} {...p}></HeaderLink>
+              <HeaderLink key={p.slug} insideResponsiveMenu={hamburgerOpen} scrolling={scrolling} {...p}></HeaderLink>
             ))}
             <HeaderLink
               name="Code Docs"
               scrolling={scrolling}
-              selected={router.asPath === '/docs/code-docs'}
+              insideResponsiveMenu={hamburgerOpen}
+              selected={router.asPath.startsWith('/docs/')}
               slug="/docs/code-docs"
             ></HeaderLink>
           </ul>

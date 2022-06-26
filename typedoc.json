@@ -8,5 +8,5 @@
   "githubPages": false,
   "readme": "none",
   "entryDocument": "code-docs.md",
-  "hideBreadcrumbs": true
+  "publicPath": "/"
 }

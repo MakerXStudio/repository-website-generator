@@ -20,6 +20,9 @@ const DocPage = (props: CodeDocPageProps) => {
     //http://localhost:3001/docs/modules/components_PageHeader.md
 
     if (uri.endsWith('.md') || uri.includes('.md#')) {
+      if (uri.startsWith("/")) {
+        uri = uri.substring(1)
+      }
       const route = '/docs/' + uri.replace('.md', '').replaceAll('/', '~')
       console.log(uri, route)
       return route
