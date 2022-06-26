@@ -10,6 +10,7 @@ const getSoeTags = () => {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  basePath: packageJson.name,
   // Nothing fancy can be done here because of webpack
   env: {
     getReadmeFileName: configJson.readmeFileName,

@@ -51,6 +51,7 @@ jobs:
         with:
           branch: gh-pages
           folder: ./out
+          clean-exclude: '.nojekyll'
 
       - name: Shrinkwrap the lock file
         run: npm shrinkwrap
