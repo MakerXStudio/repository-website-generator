@@ -1,0 +1,9 @@
+{
+  "entryPoints": ["pages/index.ts"],
+  "entryPointStrategy": "Expand",
+  "out": "ts-docs",
+  "plugin": ["typedoc-plugin-markdown"],
+  "theme": "default",
+  "cleanOutputDir": true,
+  "githubPages": false
+}

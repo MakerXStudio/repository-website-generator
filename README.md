@@ -1,2 +1,2 @@
 # repository-website-generator
-Generates a nextjs static website by converting markdown to html
+Generates a Next.js static website by converting markdown to html
