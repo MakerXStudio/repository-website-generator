@@ -1,0 +1,16 @@
+{
+  "rootPath": "/",
+  "title": "Repository Website Generator",
+  "titleSuperscript": "Proudly built and maintained by [MakerX](https://makerx.com.au)",
+  "author": null,
+  "name": null,
+  "description": null,
+  "gitHubUrl" : null,
+  "soeTags": [],
+  "codeDocs": {
+    "path": "/ts-docs"
+  },
+  "theme": {
+    "imageLogo": "/theme/makerx-icon.png"
+  }
+}

@@ -1,10 +1,11 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { If } from './If'
+import ReactMarkdown from 'react-markdown'
 
 export interface PageHeaderProps {
-  title: ReactNode
-  titleSubscript?: ReactNode
-  titleSuperscript?: ReactNode
+  title: string
+  titleSubscript?: string
+  titleSuperscript?: string
   image?: string
 }
 
@@ -15,17 +16,17 @@ export const PageHeader = ({ titleSuperscript, titleSubscript, image, title }: P
         {/*<!--Left Col-->*/}
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <If condition={Boolean(titleSuperscript)}>
-            <p className="uppercase tracking-loose w-full">{titleSuperscript}</p>
+            <ReactMarkdown className='uppercase tracking-loose w-full'>{titleSuperscript!}</ReactMarkdown>
           </If>
           <h1 className="my-4 text-5xl font-bold leading-tight">{title}</h1>
           <If condition={Boolean(titleSubscript)}>
-            <p className="leading-normal text-2xl mb-8">{titleSubscript}</p>
+            <ReactMarkdown className='leading-normal text-2xl mb-8'>{titleSubscript!}</ReactMarkdown>
           </If>
         </div>
         <If condition={Boolean(image)}>
           {/*<!--Right Col-->*/}
           <div className="w-full h-3/5 w-4/5 sm:w-4/5 md:w-3/5 lg:w-2/5 py-10 px-32 md:px-26 text-center">
-            <img className="object-scale-down z-50" aria-hidden='true' alt='Header image' src={image} />
+            <img className="object-scale-down z-50" aria-hidden='true' alt='Header image' src={image}/>
           </div>
         </If>
       </div>
@@ -44,7 +45,8 @@ export const PageHeader = ({ titleSuperscript, titleSubscript, image, title }: P
           <path d="M 1046 51.6521 C 1140 41 1262 35 1439 79 L 1439 120 C 1271.1721 77.9435 1140.1721 55.1609 990 69 Z" opacity="0.2"></path>
         </g>
         <g transform="translate(-4, 76)" fill="#FFFFFF">
-          <path d="M 1 53 C 57.086 53.198 98.208 65.809 123.822 71.865 C 181.454 85.495 234.295 90.29 272.033 93.459 C 311.355 96.759 396.635 95.801 461.025 91.663 C 486.76 90.01 518.727 86.372 556.926 80.752 C 595.747 74.596 622.372 70.008 636.799 66.991 C 663.913 61.324 712.501 49.503 727.605 46.128 C 780.47 34.317 810 31 849 27 C 879 24 954 19 1012 19 C 1075 19 1092 19 1136 23 C 1198 29 1205 30 1245 35 C 1323 46 1323 50 1440.886 72.354 L 1441.191 104.352 L 1.121 104.031 L 1 60 Z"></path>
+          <path
+            d="M 1 53 C 57.086 53.198 98.208 65.809 123.822 71.865 C 181.454 85.495 234.295 90.29 272.033 93.459 C 311.355 96.759 396.635 95.801 461.025 91.663 C 486.76 90.01 518.727 86.372 556.926 80.752 C 595.747 74.596 622.372 70.008 636.799 66.991 C 663.913 61.324 712.501 49.503 727.605 46.128 C 780.47 34.317 810 31 849 27 C 879 24 954 19 1012 19 C 1075 19 1092 19 1136 23 C 1198 29 1205 30 1245 35 C 1323 46 1323 50 1440.886 72.354 L 1441.191 104.352 L 1.121 104.031 L 1 60 Z"></path>
         </g>
       </svg>
     </div>

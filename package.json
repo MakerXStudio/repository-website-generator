@@ -29,11 +29,11 @@
     "build": "next build && next export",
     "serve-local-build": "next build && next export && http-server ./out",
     "start": "next start",
-    "generate-doc": "typedoc src/",
+    "generate-doc": "typedoc",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
-    "lint": "eslint ./src/ --ext .ts",
-    "lint:fix": "eslint ./src/ --ext .ts --fix",
+    "lint": "eslint --ext .ts --ext .tsx ./pages/ ./components/ ./shared/",
+    "lint:fix": "eslint --ext .ts --ext .tsx ./pages/ ./components/ ./shared/ --fix",
     "commitlint": "commitlint --edit -o"
   },
   "repository": {

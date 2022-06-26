@@ -5,6 +5,7 @@ import { getMiscellaneousPageMetaData, readPageFile } from '../shared/build-time
 import { Page } from '../components/Page'
 import matter from 'gray-matter'
 import { Markdown } from '../components/Markdown'
+import { configuration } from "../shared/configuration";
 
 interface IIndexProps {
   pages: IPageMeta[]
@@ -13,14 +14,10 @@ interface IIndexProps {
 
 const IndexPage = (props: IIndexProps) => {
   const titleProps = {
-    title: 'ts-object-mother',
-    titleSuperscript: (
-      <>
-        Proudly built and maintained by <a href="https://makerx.com.au">MakerX</a>
-      </>
-    ),
-    titleSubscript: 'An ObjectMother support library to facilitate the easy creation of builders in TypeScript',
-    image: '/theme/makerx-icon.png',
+    title: configuration.title,
+    titleSuperscript: configuration.titleSuperscript,
+    titleSubscript: configuration.description,
+    image: configuration.themeImageLogo,
   }
   return (
     <Page pages={props.pages} {...titleProps}>
@@ -38,7 +35,7 @@ export default IndexPage
 export const getStaticProps: GetStaticProps = async (): Promise<{ props: IIndexProps }> => {
   const pages = await getMiscellaneousPageMetaData()
 
-  let { content } = matter(readPageFile('README.md', '../../'))
+  let { content } = matter(readPageFile('README.md', configuration.rootPath))
   // Remove readme.md title
   content = content.substring(content.indexOf('[!['))
 

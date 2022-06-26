@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { IPageMeta, sortPageMetaDescending } from '../shared/pages'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { configuration } from "../shared/configuration";
 
-interface SiteHeaderProps {
+export interface SiteHeaderProps {
   pages: IPageMeta[]
 }
 
@@ -89,7 +90,7 @@ export const SiteHeader = (props: SiteHeaderProps) => {
 	l-214.375,73.99V218.377l214.375-80.271V367.435z"
                 />
               </svg>
-              TS ObjectMother
+              {configuration.name}
             </a>
           </Link>
         </div>

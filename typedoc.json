@@ -1,9 +1,12 @@
 {
-  "entryPoints": ["pages/index.ts"],
-  "entryPointStrategy": "Expand",
+  "entryPoints": ["pages/", "shared/", "components/"],
+  "entryPointStrategy": "expand",
   "out": "ts-docs",
   "plugin": ["typedoc-plugin-markdown"],
   "theme": "default",
   "cleanOutputDir": true,
-  "githubPages": false
+  "githubPages": false,
+  "readme": "none",
+  "entryDocument": "code-docs.md",
+  "hideBreadcrumbs": true
 }
