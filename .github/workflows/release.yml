@@ -37,11 +37,8 @@ jobs:
       - name: Lint commit messages
         run: npx commitlint --from ${{ github.event.before }} --to ${{ github.event.head }} --verbose
 
-      - name: Build package
-        run: npm run build
-
-      - name: Run tests
-        run: npm test
+      #- name: Run tests
+      #  run: npm test
 
       - name: Generate documentation
         run: npm run generate-doc
@@ -54,6 +51,9 @@ jobs:
         with:
           branch: gh-pages
           folder: ./out
+
+      - name: Shrinkwrap the lock file
+        run: npm shrinkwrap
 
       - name: Release package
         env:

@@ -1,0 +1,10 @@
+.idea
+.vscode
+
+.github
+.husky
+node_modules
+.next
+out
+ts-docs
+

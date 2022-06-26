@@ -22,7 +22,7 @@
   "homepage": "https://github.com/MakerXStudio/repository-website-generator#readme",
   "main": "./dist/src/index.js",
   "files": [
-    "dist/**/*"
+    "**/*"
   ],
   "scripts": {
     "dev": "next",
