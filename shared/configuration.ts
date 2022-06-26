@@ -1,14 +1,16 @@
-      export const configuration = {
-        title: process.env.generatorTitle ?? '',
-        titleSuperscript: process.env.generatorTitleSuperscript ?? '',
-        name: process.env.generatorName ?? '',
-        description: process.env.generatorDescription ?? '',
-        gitHubUrl: process.env.generatorGitHubUrl ?? '',
-        author: process.env.generatorAuthor ?? '',
-        SEOTags: process.env.generatorSEOTags ?? '',
-        rootPath: process.env.generatorRootPath ?? '',
-        codeDocs: process.env.generatorCodeDocs !== 'none',
-        codeDocsPath: process.env.generatorCodeDocsPath ?? '',
-        themeImageLogo: process.env.generatorThemeImageLogo ?? '',
-      }
-
+export const configuration = {
+  title: process.env.genTitle ?? '',
+  titleSuperscript: process.env.genTitleSuperscript ?? '',
+  name: process.env.genName ?? '',
+  description: process.env.genDescription ?? '',
+  gitHubUrl: process.env.genGitHubUrl ?? '',
+  author: process.env.genAuthor ?? '',
+  SEOTags: process.env.genSEOTags ?? '',
+  rootPath: process.env.genRootPath ?? '/',
+  readmeFileName: process.env.genreadmeFileName ?? 'README.md',
+  codeDocs: process.env.genCodeDocs !== 'none',
+  codeDocsPath: process.env.genCodeDocsPath ?? '',
+  markdownPages: process.env.genMarkdownPages !== 'none',
+  markdownPagesPath: process.env.genMarkdownPagesPath ?? '',
+  themeImageLogo: process.env.genThemeImageLogo ?? '',
+}

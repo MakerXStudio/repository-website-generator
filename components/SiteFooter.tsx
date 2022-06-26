@@ -2,7 +2,7 @@ import React from 'react'
 
 export const SiteFooter = () => {
   return (
-    <footer className='rotate-180 -mt-1'>
+    <footer className="rotate-180 -mt-1">
       <svg viewBox="0 0 1400 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(0, 1)" fill="#FFFFFF">
           <path

@@ -2,17 +2,17 @@ import React from 'react'
 import matter from 'gray-matter'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { extractPageMeta, IPageMeta } from '../shared/pages'
-import { getMiscellaneousPageMarkdownFileName, getMiscellaneousPageMetaData, readPageFile } from '../shared/build-time/pages'
+import { getMarkdownPageMarkdownFileName, getMarkdownPageMetaData, readPageFile } from '../shared/build-time/pages'
 import { Page } from '../components/Page'
 import { Markdown } from '../components/Markdown'
 
-interface MiscellaneousPageProps {
+interface MarkdownPageProps {
   pageMeta: IPageMeta
   markdown: string
   pages: IPageMeta[]
 }
 
-const MiscellaneousPage = (props: MiscellaneousPageProps) => {
+const MarkdownPage = (props: MarkdownPageProps) => {
   return (
     <Page pages={props.pages} title={props.pageMeta.title}>
       <div className="border-b py-8 bg-white">
@@ -24,13 +24,13 @@ const MiscellaneousPage = (props: MiscellaneousPageProps) => {
   )
 }
 
-export default MiscellaneousPage
+export default MarkdownPage
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext): Promise<{ props: MiscellaneousPageProps }> => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext): Promise<{ props: MarkdownPageProps }> => {
   const slug = context.params!.slug
   const { data, content } = matter(readPageFile(`${slug}.md`))
   const blogMeta = extractPageMeta(data)
-  const pages = await getMiscellaneousPageMetaData()
+  const pages = await getMarkdownPageMetaData()
 
   return {
     props: {
@@ -45,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
   paths: Array<string | { params: { slug: string } }>
   fallback: boolean
 }> => {
-  const markdownFileNames = await getMiscellaneousPageMarkdownFileName()
+  const markdownFileNames = await getMarkdownPageMarkdownFileName()
   const markdownFileNamesWithoutExtensions = markdownFileNames.map((fileName) => fileName.replace('.md', ''))
 
   return {

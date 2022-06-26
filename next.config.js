@@ -1,30 +1,32 @@
-const config = require('./generator-config.json')
-const package = require('./package.json')
+const configJson = require('./generator-config.json')
+const packageJson = require('./package.json')
 
 const getSoeTags = () => {
-  if (config.soeTags && config.soeTags.length > 0)
-    return config.soeTags.reduce((acc, cur) => acc + ' ' + cur)
-  if (package.keywords && package.keywords.length > 0)
-    return package.keywords.reduce((acc, cur) => acc + ' ' + cur)
+  if (configJson.soeTags && configJson.soeTags.length > 0) return configJson.soeTags.reduce((acc, cur) => acc + ' ' + cur)
+  if (packageJson.keywords && packageJson.keywords.length > 0) return packageJson.keywords.reduce((acc, cur) => acc + ' ' + cur)
   return []
 }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Nothing fancy can be done here because of webpack
   env: {
-    generatorTitle: config.title,
-    generatorTitleSuperscript: config.titleSuperscript,
-    generatorName: config.name ?? package.name,
-    generatorDescription: config.description ?? package.description,
-    generatorGitHubUrl: config.gitHubUrl ?? package.homepage,
-    generatorAuthor: config.author ?? package.author,
-    generatorSEOTags: getSoeTags(),
-    generatorRootPath: config.rootPath,
-    generatorCodeDocs: config.codeDocs ? 'yes' : 'none',
-    generatorCodeDocsPath: config.codeDocs?.path,
-    generatorThemeImageLogo: config.theme.imageLogo
-  }
+    getReadmeFileName: configJson.readmeFileName,
+    genTitle: configJson.title,
+    genTitleSuperscript: configJson.titleSuperscript,
+    genName: configJson.name ?? packageJson.name,
+    genDescription: configJson.description ?? packageJson.description,
+    genGitHubUrl: configJson.gitHubUrl ?? packageJson.homepage,
+    genAuthor: configJson.author ?? packageJson.author,
+    genSEOTags: getSoeTags(),
+    genRootPath: configJson.rootPath,
+    genCodeDocs: configJson.codeDocs ? 'yes' : 'none',
+    genCodeDocsPath: configJson.codeDocs?.path,
+    genMarkdownPages: configJson.miscellaneousPages ? 'yes' : 'none',
+    genMarkdownPagesPath: configJson.codeDocs?.path,
+    genThemeImageLogo: configJson.theme.imageLogo,
+  },
 }
 
 module.exports = nextConfig

@@ -2,16 +2,18 @@ import React from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { ghcolors as theme } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import ReactMarkdown from 'react-markdown'
+import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown'
 
-export interface MarkdownProps {
+export type MarkdownProps = {
   children: string
   className?: string | undefined
-}
+} & Pick<ReactMarkdownOptions, 'transformLinkUri'>
 
-export const Markdown = ({ children, className = 'w-full markdown' }: MarkdownProps) => {
+export const Markdown = ({ children, transformLinkUri, className = 'w-full markdown' }: MarkdownProps) => {
   return (
     <ReactMarkdown
       className={className}
+      transformLinkUri={transformLinkUri}
       components={{
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '')
