@@ -8,6 +8,7 @@ import { configuration } from '../../shared/configuration'
 import { asyncGeneratorToArray, getFilesRecursive, readFile } from '../../shared/build-time/utilities'
 import { uriTransformer } from 'react-markdown'
 import { Markdown } from '../../components/Markdown'
+import { useRouter } from 'next/router'
 
 interface CodeDocPageProps {
   markdown: string
@@ -16,15 +17,13 @@ interface CodeDocPageProps {
 }
 
 const DocPage = (props: CodeDocPageProps) => {
+  const router = useRouter()
   const transformLinkUriHandler = (uri: string) => {
-    //http://localhost:3001/docs/modules/components_PageHeader.md
-
     if (uri.endsWith('.md') || uri.includes('.md#')) {
       if (uri.startsWith("/")) {
         uri = uri.substring(1)
       }
-      const route = '/docs/' + uri.replace('.md', '').replaceAll('/', '~')
-      return route
+      return router.basePath + '/docs/' + uri.replace('.md', '').replaceAll('/', '~')
     }
 
     return uriTransformer(uri)

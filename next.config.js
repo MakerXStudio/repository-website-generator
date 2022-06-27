@@ -36,7 +36,7 @@ const nextConfig = {
     genCodeDocsPath: configJson.codeDocs?.path,
     genMarkdownPages: configJson.miscellaneousPages ? 'yes' : 'none',
     genMarkdownPagesPath: configJson.codeDocs?.path,
-    genThemeImageLogo: Boolean(getBasePath()) ? getBasePath() + configJson.theme.imageLogo : configJson.theme.imageLogo,
+    genThemeImageLogo: configJson.theme.imageLogo,
   },
 }
 
