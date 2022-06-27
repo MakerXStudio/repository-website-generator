@@ -24,7 +24,6 @@ const DocPage = (props: CodeDocPageProps) => {
         uri = uri.substring(1)
       }
       const route = '/docs/' + uri.replace('.md', '').replaceAll('/', '~')
-      console.log(uri, route)
       return route
     }
 

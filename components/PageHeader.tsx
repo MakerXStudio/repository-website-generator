@@ -15,7 +15,6 @@ export const PageHeader = ({ titleSuperscript, titleSubscript, image, title }: P
     <>
       <header className="pt-24">
         <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-          {/*<!--Left Col-->*/}
           <div
             className={`flex flex-col w-full ${
               hasImage ? 'md:w-2/5' : 'md:w-full pb-10'
@@ -30,7 +29,6 @@ export const PageHeader = ({ titleSuperscript, titleSubscript, image, title }: P
             </If>
           </div>
           <If condition={hasImage}>
-            {/*<!--Right Col-->*/}
             <div className="w-full h-3/5 w-4/5 sm:w-4/5 md:w-3/5 lg:w-2/5 py-10 px-32 md:px-26 text-center">
               <img className="object-scale-down z-50" aria-hidden="true" alt="Header image" src={image} />
             </div>
