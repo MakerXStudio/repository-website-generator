@@ -7,12 +7,20 @@ const getSoeTags = () => {
   return []
 }
 
-console.log(process.env)
+const getBasePath = () => {
+  if (process.env.CI) {
+    return process.env.GITHUB_REPOSITORY.includes('/')
+      ? process.env.GITHUB_REPOSITORY.substring(process.env.GITHUB_REPOSITORY.indexOf('/'))
+      : '/' + process.env.GITHUB_REPOSITORY
+  }
+
+  return null
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: process.env.CI ? "/" + packageJson.name : null,
+  basePath: getBasePath(),
   // Nothing fancy can be done here because of webpack
   env: {
     getReadmeFileName: configJson.readmeFileName,
