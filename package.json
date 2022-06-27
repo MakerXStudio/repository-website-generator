@@ -1,5 +1,5 @@
 {
-  "name": "@makerx/ts-object-mother-public-website",
+  "name": "@makerx/repository-website-generator",
   "publishConfig": {
     "access": "public"
   },
