@@ -9,8 +9,8 @@ export const configuration = {
   rootPath: process.env.genRootPath ?? '/',
   readmeFileName: process.env.genreadmeFileName ?? 'README.md',
   codeDocs: process.env.genCodeDocs !== 'none',
-  codeDocsPath: './code-docs',
+  codeDocsPath: '/code-docs',
   markdownPages: process.env.genMarkdownPages !== 'none',
-  markdownPagesPath: './docs',
+  markdownPagesPath: '/docs',
   themeImageLogo: process.env.genThemeImageLogo ?? '',
 }

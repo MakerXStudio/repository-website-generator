@@ -12,7 +12,7 @@
     "path": "/docs"
   },
   "codeDocs": {
-    "path": "/ts-docs"
+    "path": "/code-docs"
   },
   "theme": {
     "imageLogo": "/theme/makerx-icon.png"
