@@ -1,28 +1,31 @@
 const path = require('path')
 const fs = require('fs')
 
-const parentDirectoryName = path.dirname(path.join(__dirname, '../'))
+const parentDirectoryName = path.basename(path.join(__dirname, '../'))
 
 let configJson = {}
 let packageJson = {}
+let pathPrefix = ''
 
 if (parentDirectoryName !== '@makerx') {
   configJson = require('./website-generator.json')
   packageJson = require('./package.json')
 } else {
-  if (!fs.existsSync('./../../website-generator.json')) {
-    fs.copyFileSync('./website-generator.json', './../../website-generator.json')
+  pathPrefix = './../../../'
+
+  if (!fs.existsSync(pathPrefix + 'website-generator.json')) {
+    fs.copyFileSync('./website-generator.json', pathPrefix + 'website-generator.json')
     console.warn('Website generator configuration file missing. A sample configuration file has been created. Please edit and rebuild')
     process.exit(1)
   }
 
-  if (!fs.existsSync('./../../package.json')) {
+  if (!fs.existsSync(pathPrefix + 'package.json')) {
     console.error('The package.json file could not be found.')
     process.exit(1)
   }
 
-  configJson = require('./../../website-generator.json')
-  packageJson = require('./../../package.json')
+  configJson = require(pathPrefix + 'website-generator.json')
+  packageJson = require(pathPrefix + 'package.json')
 }
 
 const getSoeTags = () => {
@@ -57,9 +60,9 @@ const nextConfig = {
     genSEOTags: getSoeTags(),
     genRootPath: configJson.rootPath,
     genCodeDocs: configJson.codeDocs ? 'yes' : 'none',
-    genCodeDocsPath: configJson.codeDocs?.path,
+    genCodeDocsPath: pathPrefix + configJson.codeDocs?.path,
     genMarkdownPages: configJson.miscellaneousPages ? 'yes' : 'none',
-    genMarkdownPagesPath: configJson.codeDocs?.path,
+    genMarkdownPagesPath: pathPrefix + configJson.miscellaneousPages?.path,
     genThemeImageLogo: configJson.theme.imageLogo,
   },
 }

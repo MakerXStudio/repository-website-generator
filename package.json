@@ -20,7 +20,9 @@
     "url": "https://github.com/MakerXStudio/repository-website-generator/issues"
   },
   "homepage": "https://github.com/MakerXStudio/repository-website-generator#readme",
-  "main": "./dist/src/index.js",
+  "bin": {
+    "repository-website-generator": "./run-generator.js"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
