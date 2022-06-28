@@ -2,4 +2,5 @@ node_modules
 .idea
 .next
 out
-ts-docs
+code-docs
+docs

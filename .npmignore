@@ -6,4 +6,5 @@
 node_modules
 .next
 out
-ts-docs
+code-docs
+docs

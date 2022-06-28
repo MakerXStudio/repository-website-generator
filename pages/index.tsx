@@ -35,7 +35,7 @@ export default IndexPage
 export const getStaticProps: GetStaticProps = async (): Promise<{ props: IIndexProps }> => {
   const pages = await getMarkdownPageMetaData()
 
-  let { content } = matter(readPageFile('README.md', configuration.rootPath))
+  let { content } = matter(readPageFile(configuration.readmeFileName, configuration.rootPath))
   // Remove readme.md title
   content = content.substring(content.indexOf('[!['))
 
