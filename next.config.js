@@ -1,5 +1,29 @@
-const configJson = require('./generator-config.json')
-const packageJson = require('./package.json')
+const path = require('path')
+const fs = require('fs')
+
+const parentDirectoryName = path.dirname(path.join(__dirname, '../'))
+
+let configJson = {}
+let packageJson = {}
+
+if (parentDirectoryName !== '@makerx') {
+  configJson = require('./website-generator.json')
+  packageJson = require('./package.json')
+} else {
+  if (!fs.existsSync('./../../website-generator.json')) {
+    fs.copyFileSync('./website-generator.json', './../../website-generator.json')
+    console.warn('Website generator configuration file missing. A sample configuration file has been created. Please edit and rebuild')
+    process.exit(1)
+  }
+
+  if (!fs.existsSync('./../../package.json')) {
+    console.error('The package.json file could not be found.')
+    process.exit(1)
+  }
+
+  configJson = require('./../../website-generator.json')
+  packageJson = require('./../../package.json')
+}
 
 const getSoeTags = () => {
   if (configJson.soeTags && configJson.soeTags.length > 0) return configJson.soeTags.reduce((acc, cur) => acc + ' ' + cur)

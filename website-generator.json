@@ -7,7 +7,7 @@
   "name": null,
   "description": null,
   "gitHubUrl": null,
-  "soeTags": [],
+  "soeTags": ["MakerX", "CI", "CD", "CICD", "Website Generator", "Repository Website Generator"],
   "miscellaneousPages": {
     "path": "/docs"
   },
