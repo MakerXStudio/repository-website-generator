@@ -1,22 +1,15 @@
 const path = require('path')
 const fs = require('fs')
 
-const parentDirectoryName = path.basename(path.join(__dirname, '../'))
-
 let configJson = {}
 let packageJson = {}
 
-if (parentDirectoryName !== '@makerx') {
-  configJson = require('./website-generator.json')
-  packageJson = require('./package.json')
-} else {
-  if (!fs.existsSync('./website-generator-repo.json') || !fs.existsSync('./package-repo.json'))  {
-    throw new Error('Building using the package version must be run via `npx run-generator`')
-  }
+if (fs.existsSync('./website-generator-repo.json')) {
   configJson = require('./website-generator-repo.json')
   packageJson = require('./package-repo.json')
-
-  configJson.readmeFileName = 'readme-repo.md'
+} else {
+  configJson = require('./website-generator.json')
+  packageJson = require('./package.json')
 }
 
 const getSoeTags = () => {
