@@ -86,6 +86,10 @@ var npm = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 const afterBuild = (success) => {
   if (success) {
     console.log(`Repo website gen: copying static website to '${outPath}'`)
+
+    if (fs.existsSync(outPath))
+      fse.rmSync(outPath, { recursive: true })
+
     fse.mkdirSync(outPath)
     fse.copySync(path.join(tempDir, 'out'), outPath)
   }
@@ -120,7 +124,7 @@ if (process.platform === 'win32') {
   })
 } else {
   console.log(`Repo website gen: restoring packages`)
-  const install = captureOut(cp.spawnSync(npm, ['install']))
+  const install = captureOut(cp.spawn(npm, ['install']))
   install.on('exit', (code) => {
     if (code !== 0) {
       afterBuild(false)
