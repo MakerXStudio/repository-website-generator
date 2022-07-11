@@ -5,7 +5,15 @@ let configJson = {}
 let packageJson = {}
 
 if (fs.existsSync('./website-generator-repo.json')) {
-  configJson = require('./website-generator-repo.json')
+  const clientConfigJson = require('./website-generator-repo.json')
+  configJson = require('./website-generator.json')
+  configJson = {
+    ...clientConfigJson,
+    // override user configurable paths for build
+    outPath: configJson.outPath,
+    markdownPath: configJson.markdownPath,
+    codeDocs: configJson.codeDocs,
+  }
   packageJson = require('./package-repo.json')
 } else {
   configJson = require('./website-generator.json')

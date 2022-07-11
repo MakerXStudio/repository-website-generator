@@ -1,6 +1,6 @@
 node_modules
 .idea
 .next
-out
-code-docs
-docs
+/out
+/code-docs
+/docs

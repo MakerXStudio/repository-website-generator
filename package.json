@@ -26,7 +26,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
-    "serve-local-build": "next build && next export && http-server ./out",
+    "serve-local": "npm run generate-doc && next build && next export && http-server ./out",
     "start": "next start",
     "generate-doc": "typedoc",
     "prepare": "husky install",

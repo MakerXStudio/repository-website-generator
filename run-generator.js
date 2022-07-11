@@ -56,7 +56,7 @@ if (parentDirectoryName === '@makerx') {
   }
 
   console.log(`Repo website gen: ${configJson.readmeFileName ?? 'README.md'} to '${tempDir}'`)
-  fs.copyFileSync(readmeFilePath, './readme-repo.md')
+  fs.copyFileSync(readmeFilePath, './README.md')
 
   if (configJson.markdownPages) {
     const markdownPagesPath = path.resolve(path.join(pathPrefix, configJson.markdownPages.path))
