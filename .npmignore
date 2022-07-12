@@ -5,6 +5,6 @@
 .husky
 node_modules
 .next
-out
-code-docs
-docs
+/out
+/code-docs
+/docs
