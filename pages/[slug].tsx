@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
   paths: Array<string | { params: { slug: string } }>
   fallback: boolean
 }> => {
-  if (!configuration.markdownPages) {
+  if (!configuration.miscellaneousPages) {
     return { paths: [], fallback: false }
   }
 

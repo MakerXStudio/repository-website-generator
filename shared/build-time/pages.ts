@@ -6,7 +6,7 @@ import { configuration } from '../configuration'
 export const readPageFile = (fileName: string, path: string = '../'): Buffer => readFile(path, fileName)
 
 export const getMarkdownPageMarkdownFileName = async (): Promise<string[]> => {
-  return await getMarkdownFileNames(configuration.markdownPagesPath)
+  return await getMarkdownFileNames(configuration.miscellaneousPagesPath)
 }
 
 export const getMarkdownPageMetaData = async (): Promise<IPageMeta[]> => {

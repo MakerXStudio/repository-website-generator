@@ -58,14 +58,14 @@ if (parentDirectoryName === '@makerx') {
   console.log(`Repo website gen: ${configJson.readmeFileName ?? 'README.md'} to '${tempDir}'`)
   fs.copyFileSync(readmeFilePath, './README.md')
 
-  if (configJson.markdownPages) {
-    const markdownPagesPath = path.resolve(path.join(pathPrefix, configJson.markdownPages.path))
-    if (!fs.existsSync(markdownPagesPath)) {
-      console.error(`Markdown pages directory '${markdownPagesPath}' does not exist. Set 'markdownPages: null' to disable`)
+  if (configJson.miscellaneousPages) {
+    const miscellaneousPagesPath = path.resolve(path.join(pathPrefix, configJson.miscellaneousPages.path))
+    if (!fs.existsSync(miscellaneousPagesPath)) {
+      console.error(`Miscellaneous pages directory '${miscellaneousPagesPath}' does not exist. Set 'miscellaneousPages: null' to disable`)
       process.exit(1)
     }
-    console.log(`Repo website gen: copying markdown pages to '${path.join(tempDir, 'docs')}'`)
-    fse.copySync(markdownPagesPath, path.join(tempDir, 'docs'), { overwrite: true })
+    console.log(`Repo website gen: copying markdown pages to '${path.join(tempDir, 'public-site')}'`)
+    fse.copySync(miscellaneousPagesPath, path.join(tempDir, 'public-site'), { overwrite: true })
   }
 
   if (configJson.codeDocs) {

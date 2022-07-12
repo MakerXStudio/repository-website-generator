@@ -52,7 +52,7 @@ const nextConfig = {
     genSEOTags: getSoeTags(),
     genRootPath: configJson.rootPath,
     genCodeDocs: configJson.codeDocs ? 'yes' : 'none',
-    genMarkdownPages: configJson.markdownPages ? 'yes' : 'none',
+    genMiscellaneousPages: configJson.miscellaneousPages ? 'yes' : 'none',
     genThemeImageLogo: configJson.theme.imageLogo,
   },
 }
