@@ -5,6 +5,7 @@ import { extractPageMeta, IPageMeta } from '../shared/pages'
 import { getMarkdownPageMarkdownFileName, getMarkdownPageMetaData, readPageFile } from '../shared/build-time/pages'
 import { Page } from '../components/Page'
 import { Markdown } from '../components/Markdown'
+import { configuration } from '../shared/configuration'
 
 interface MarkdownPageProps {
   pageMeta: IPageMeta
@@ -45,6 +46,10 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
   paths: Array<string | { params: { slug: string } }>
   fallback: boolean
 }> => {
+  if (!configuration.markdownPages) {
+    return { paths: [], fallback: false }
+  }
+
   const markdownFileNames = await getMarkdownPageMarkdownFileName()
   const markdownFileNamesWithoutExtensions = markdownFileNames.map((fileName) => fileName.replace('.md', ''))
 
