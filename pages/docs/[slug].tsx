@@ -2,7 +2,7 @@ import React from 'react'
 import matter from 'gray-matter'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { IPageMeta } from '../../shared/pages'
-import { getMarkdownPageMetaData } from '../../shared/build-time/pages'
+import { getMiscellaneousPageMetaData } from '../../shared/build-time/pages'
 import { Page } from '../../components/Page'
 import { configuration } from '../../shared/configuration'
 import { asyncGeneratorToArray, getFilesRecursive, readFile } from '../../shared/build-time/utilities'
@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   let file = slug.replaceAll('~~', '.').replaceAll('~', '/') + '.md'
 
   let { content } = matter(readFile(configuration.codeDocsPath, file))
-  const pages = await getMarkdownPageMetaData()
+  const pages = await getMiscellaneousPageMetaData()
 
   const titleRegex = /^#\s(?<title>.+)\S{1,2}/gim
   let title = ''

@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { IPageMeta } from '../shared/pages'
-import { getMarkdownPageMetaData, readPageFile } from '../shared/build-time/pages'
+import { getMiscellaneousPageMetaData, readPageFile } from '../shared/build-time/pages'
 import { Page } from '../components/Page'
 import matter from 'gray-matter'
 import { Markdown } from '../components/Markdown'
@@ -33,7 +33,7 @@ const IndexPage = (props: IIndexProps) => {
 export default IndexPage
 
 export const getStaticProps: GetStaticProps = async (): Promise<{ props: IIndexProps }> => {
-  const pages = await getMarkdownPageMetaData()
+  const pages = await getMiscellaneousPageMetaData()
 
   let { content } = matter(readPageFile(configuration.readmeFileName, configuration.rootPath))
   // Remove readme.md title

@@ -2,7 +2,7 @@ import React from 'react'
 import matter from 'gray-matter'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { extractPageMeta, IPageMeta } from '../shared/pages'
-import { getMarkdownPageMarkdownFileName, getMarkdownPageMetaData, readPageFile } from '../shared/build-time/pages'
+import { getMiscellaneousPageFileNames, getMiscellaneousPageMetaData, readPageFile } from '../shared/build-time/pages'
 import { Page } from '../components/Page'
 import { Markdown } from '../components/Markdown'
 import { configuration } from '../shared/configuration'
@@ -29,9 +29,9 @@ export default MarkdownPage
 
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext): Promise<{ props: MarkdownPageProps }> => {
   const slug = context.params!.slug
-  const { data, content } = matter(readPageFile(`${slug}.md`))
+  const { data, content } = matter(readPageFile(`${slug}.md`, configuration.miscellaneousPagesPath))
   const blogMeta = extractPageMeta(data)
-  const pages = await getMarkdownPageMetaData()
+  const pages = await getMiscellaneousPageMetaData()
 
   return {
     props: {
@@ -50,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
     return { paths: [], fallback: false }
   }
 
-  const markdownFileNames = await getMarkdownPageMarkdownFileName()
+  const markdownFileNames = await getMiscellaneousPageFileNames()
   const markdownFileNamesWithoutExtensions = markdownFileNames.map((fileName) => fileName.replace('.md', ''))
 
   return {
