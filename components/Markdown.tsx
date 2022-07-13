@@ -7,13 +7,14 @@ import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown'
 export type MarkdownProps = {
   children: string
   className?: string | undefined
-} & Pick<ReactMarkdownOptions, 'transformLinkUri'>
+} & Pick<ReactMarkdownOptions, 'transformLinkUri' | 'transformImageUri'>
 
-export const Markdown = ({ children, transformLinkUri, className = 'w-full markdown' }: MarkdownProps) => {
+export const Markdown = ({ children, transformLinkUri, transformImageUri, className = 'w-full markdown' }: MarkdownProps) => {
   return (
     <ReactMarkdown
       className={className}
       transformLinkUri={transformLinkUri}
+      transformImageUri={transformImageUri}
       components={{
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '')

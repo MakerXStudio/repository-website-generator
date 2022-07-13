@@ -5,17 +5,28 @@ const fs = require('fs')
 const fse = require('fs-extra')
 const os = require('os')
 const cp = require('child_process')
+const { readdir } = require('fs-extra')
 
 process.chdir(__dirname)
 
 let outPath = path.resolve(path.join(__dirname, 'out'))
 
 const chars = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-let tempDir = path.join(os.tmpdir(), 'rwb-' + chars.sort(() => 0.5 - Math.random()).slice(0, 6).join(''))
+let tempDir = path.join(
+  os.tmpdir(),
+  'rwb-' +
+  chars
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 6)
+    .join(''),
+)
 
 console.log(`Repo website gen: copying build files to '${tempDir}'`)
 fse.mkdirSync(tempDir)
 fse.copySync(__dirname, tempDir, { filter: (src, dest) => !src.endsWith('node_modules') })
+// remove own files
+fse.removeSync(path.join(tempDir, 'public-site'))
+fse.removeSync(path.join(tempDir, 'README.md'))
 
 const parentDirectoryName = path.basename(path.join(__dirname, '../'))
 if (parentDirectoryName === '@makerx') {
@@ -56,7 +67,7 @@ if (parentDirectoryName === '@makerx') {
   }
 
   console.log(`Repo website gen: ${configJson.readmeFileName ?? 'README.md'} to '${tempDir}'`)
-  fs.copyFileSync(readmeFilePath, './README.md')
+  fs.copyFileSync(readmeFilePath, path.join(tempDir, 'README.md'))
 
   if (configJson.miscellaneousPages) {
     const miscellaneousPagesPath = path.resolve(path.join(pathPrefix, configJson.miscellaneousPages.path))
@@ -64,8 +75,20 @@ if (parentDirectoryName === '@makerx') {
       console.error(`Miscellaneous pages directory '${miscellaneousPagesPath}' does not exist. Set 'miscellaneousPages: null' to disable`)
       process.exit(1)
     }
-    console.log(`Repo website gen: copying markdown pages to '${path.join(tempDir, 'public-site')}'`)
+    console.log(`Repo website gen: copying miscellaneous pages to '${path.join(tempDir, 'public-site')}'`)
     fse.copySync(miscellaneousPagesPath, path.join(tempDir, 'public-site'), { overwrite: true })
+
+    const otherFiles = asyncGeneratorToArray(getFilesRecursive(miscellaneousPagesPath)).filter((fn) => !fn.endsWith('.md'))
+
+    if (otherFiles.length) {
+      console.log(`Repo website gen: found assets in miscellaneous folder; copying assets`)
+      for (let asset of otherFiles) {
+        const relativePath = asset.replace(miscellaneousPagesPath, '')
+        const destFilePath = path.join(tempDir, 'public', relativePath)
+        console.log(`Repo website gen: copying asset ${asset} to ${destFilePath}`)
+        fse.copySync(asset, destFilePath, { overwrite: true })
+      }
+    }
   }
 
   if (configJson.codeDocs) {
@@ -81,14 +104,13 @@ if (parentDirectoryName === '@makerx') {
 
 process.chdir(tempDir)
 
-var npm = process.platform === 'win32' ? 'npm.cmd' : 'npm'
+const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 
 const afterBuild = (success) => {
   if (success) {
     console.log(`Repo website gen: copying static website to '${outPath}'`)
 
-    if (fs.existsSync(outPath))
-      fse.rmSync(outPath, { recursive: true })
+    if (fs.existsSync(outPath)) fse.rmSync(outPath, { recursive: true })
 
     fse.mkdirSync(outPath)
     fse.copySync(path.join(tempDir, 'out'), outPath)
@@ -136,4 +158,24 @@ if (process.platform === 'win32') {
       afterBuild(code === 0)
     })
   })
+}
+
+function* getFilesRecursive(dirPath) {
+  let absolutePath = dirPath
+
+  const dirents = fse.readdirSync(absolutePath, { withFileTypes: true })
+  for (const dirent of dirents) {
+    const res = path.join(dirPath, dirent.name)
+    if (dirent.isDirectory()) {
+      yield* getFilesRecursive(res)
+    } else {
+      yield res
+    }
+  }
+}
+
+function asyncGeneratorToArray(asyncIterator) {
+  const result = []
+  for (const i of asyncIterator) result.push(i)
+  return result
 }
