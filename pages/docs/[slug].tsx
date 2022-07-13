@@ -20,10 +20,10 @@ const DocPage = (props: CodeDocPageProps) => {
   const router = useRouter()
   const transformLinkUriHandler = (uri: string) => {
     if (uri.endsWith('.md') || uri.includes('.md#')) {
-      if (uri.startsWith("/")) {
+      if (uri.startsWith('/')) {
         uri = uri.substring(1)
       }
-      return router.basePath + '/docs/' + uri.replace('.md', '').replaceAll('/', '~')
+      return router.basePath + '/docs/' + uri.replace('.md', '').replaceAll('.', '~~').replaceAll('/', '~')
     }
 
     return uriTransformer(uri)
@@ -45,7 +45,8 @@ export default DocPage
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext): Promise<{ props: CodeDocPageProps }> => {
   const slug: string = context.params!.slug as string
 
-  let file = slug.replaceAll('~', '/') + '.md'
+  let file = slug.replaceAll('~~', '.').replaceAll('~', '/') + '.md'
+
   let { content } = matter(readFile(configuration.codeDocsPath, file))
   const pages = await getMarkdownPageMetaData()
 
@@ -86,12 +87,14 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
           .replace(configuration.codeDocsPath, '')
           // remove leading slash
           .substring(1)
+          // make dots nextjs friendly
+          .replaceAll('.', '~~')
           // made slashes url friendly
           .replaceAll('/', '~')
       )
     })
 
-  const docFileNamesWithExtensions = docFiles.map((fileName) => fileName.replace('.md', ''))
+  const docFileNamesWithExtensions = docFiles.map((fileName) => fileName.replace('~~md', ''))
 
   return {
     paths: docFileNamesWithExtensions.map((slug) => {
