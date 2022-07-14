@@ -33,7 +33,7 @@ const IndexPage = (props: IIndexProps) => {
 export default IndexPage
 
 export const getStaticProps: GetStaticProps = async (): Promise<{ props: IIndexProps }> => {
-  const pages = await getMiscellaneousPageMetaData()
+  const pages = configuration.miscellaneousPages ? await getMiscellaneousPageMetaData() : []
 
   let { content } = matter(readPageFile(configuration.readmeFileName, configuration.rootPath))
   // Remove readme.md title

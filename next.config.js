@@ -11,8 +11,8 @@ if (fs.existsSync('./website-generator-repo.json')) {
     ...clientConfigJson,
     // override user configurable paths for build
     outPath: configJson.outPath,
-    miscellaneousPages: configJson.miscellaneousPages,
-    codeDocs: configJson.codeDocs,
+    miscellaneousPages: clientConfigJson.miscellaneousPages ? configJson.miscellaneousPages : null,
+    codeDocs: clientConfigJson.codeDocs ? configJson.codeDocs : null,
   }
   packageJson = require('./package-repo.json')
 } else {
