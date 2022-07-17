@@ -9,6 +9,7 @@ import { asyncGeneratorToArray, getFilesRecursive, readFile } from '../../shared
 import { uriTransformer } from 'react-markdown'
 import { Markdown } from '../../components/Markdown'
 import { useRouter } from 'next/router'
+import config from 'tailwindcss/defaultConfig'
 
 interface CodeDocPageProps {
   markdown: string
@@ -48,7 +49,8 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   let file = slug.replaceAll('~~', '.').replaceAll('~', '/') + '.md'
 
   let { content } = matter(readFile(configuration.codeDocsPath, file))
-  const pages = await getMiscellaneousPageMetaData()
+
+  const pages = configuration.miscellaneousPages ? await getMiscellaneousPageMetaData() : []
 
   const titleRegex = /^#\s(?<title>.+)\S{1,2}/gim
   let title = ''
