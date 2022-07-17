@@ -9,7 +9,6 @@ import { asyncGeneratorToArray, getFilesRecursive, readFile } from '../../shared
 import { uriTransformer } from 'react-markdown'
 import { Markdown } from '../../components/Markdown'
 import { useRouter } from 'next/router'
-import config from 'tailwindcss/defaultConfig'
 
 interface CodeDocPageProps {
   markdown: string
