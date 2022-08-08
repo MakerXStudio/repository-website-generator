@@ -17,5 +17,6 @@
   },
   "theme": {
     "imageLogo": "/theme/makerx-icon.png"
-  }
+  },
+  "attribution": []
 }

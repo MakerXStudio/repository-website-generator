@@ -15,7 +15,7 @@ export const Page = (props: PageProps) => {
       <SiteHeader pages={props.pages} />
       <PageHeader {...props}></PageHeader>
       <main>{props.children}</main>
-      <SiteFooter></SiteFooter>
+      <SiteFooter pages={props.pages}></SiteFooter>
     </>
   )
 }
