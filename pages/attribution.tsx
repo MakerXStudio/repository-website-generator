@@ -1,9 +1,8 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { IPageMeta } from '../shared/pages'
-import { getMiscellaneousPageMetaData, readPageFile } from '../shared/build-time/pages'
+import { getMiscellaneousPageMetaData } from '../shared/build-time/pages'
 import { Page } from '../components/Page'
-import matter from 'gray-matter'
 import { configuration } from '../shared/configuration'
 
 type Reference = { group?: string; title: string; license: string; description?: string; link?: string }
