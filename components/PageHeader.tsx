@@ -7,12 +7,12 @@ export interface PageHeaderProps {
   title: string
   titleSubscript?: string
   titleSuperscript?: string
-  image?: string
+  imageLogo?: string
 }
 
-export const PageHeader = ({ titleSuperscript, titleSubscript, image, title }: PageHeaderProps) => {
+export const PageHeader = ({ titleSuperscript, titleSubscript, imageLogo, title }: PageHeaderProps) => {
   const router = useRouter()
-  const hasImage = Boolean(image)
+  const hasImage = Boolean(imageLogo)
   return (
     <>
       <header className="pt-24">
@@ -32,7 +32,7 @@ export const PageHeader = ({ titleSuperscript, titleSubscript, image, title }: P
           </div>
           <If condition={hasImage}>
             <div className="w-full h-3/5 w-4/5 sm:w-4/5 md:w-3/5 lg:w-2/5 py-10 px-32 md:px-26 text-center">
-              <img className="object-scale-down z-50" aria-hidden="true" alt="Header image" src={router.basePath + image} />
+              <img className="object-scale-down z-50" aria-hidden="true" alt="Header image" src={router.basePath + imageLogo} />
             </div>
           </If>
         </div>

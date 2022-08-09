@@ -7,17 +7,17 @@ import matter from 'gray-matter'
 import { Markdown } from '../components/Markdown'
 import { configuration } from '../shared/configuration'
 
-interface IIndexProps {
+interface IndexPageProps {
   pages: IPageMeta[]
   markdown: string
 }
 
-const IndexPage = (props: IIndexProps) => {
+const IndexPage = (props: IndexPageProps) => {
   const titleProps = {
     title: configuration.title,
     titleSuperscript: configuration.titleSuperscript,
     titleSubscript: configuration.description,
-    image: configuration.themeImageLogo,
+    imageLogo: configuration.themeIconLogo
   }
   return (
     <Page pages={props.pages} {...titleProps}>
@@ -32,7 +32,7 @@ const IndexPage = (props: IIndexProps) => {
 
 export default IndexPage
 
-export const getStaticProps: GetStaticProps = async (): Promise<{ props: IIndexProps }> => {
+export const getStaticProps: GetStaticProps = async (): Promise<{ props: IndexPageProps }> => {
   const pages = configuration.miscellaneousPages ? await getMiscellaneousPageMetaData() : []
 
   let { content } = matter(readPageFile(configuration.readmeFileName, configuration.rootPath))

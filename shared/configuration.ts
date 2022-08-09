@@ -12,5 +12,8 @@ export const configuration = {
   codeDocsPath: '/code-docs',
   miscellaneousPages: process.env.genMiscellaneousPages !== 'none',
   miscellaneousPagesPath: '/public-site',
+  themeIconLogo: process.env.genThemeIconLogo ?? '',
   themeImageLogo: process.env.genThemeImageLogo ?? '',
+  themeImageLogoLink: process.env.genThemeImageLogoLink ?? '',
+  attribution: JSON.parse(process.env.genAttribution ?? '[]')
 }

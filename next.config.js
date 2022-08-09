@@ -26,6 +26,10 @@ const getSoeTags = () => {
   return []
 }
 
+const getAttribution = () => {
+  return JSON.stringify(configJson.attribution ? configJson.attribution : [])
+}
+
 const getBasePath = () => {
   if (process.env.CI) {
     return process.env.GITHUB_REPOSITORY.includes('/')
@@ -53,7 +57,10 @@ const nextConfig = {
     genRootPath: configJson.rootPath,
     genCodeDocs: configJson.codeDocs ? 'yes' : 'none',
     genMiscellaneousPages: configJson.miscellaneousPages ? 'yes' : 'none',
+    genThemeIconLogo: configJson.theme.iconLogo,
     genThemeImageLogo: configJson.theme.imageLogo,
+    genThemeImageLogoLink:  configJson.theme.imageLogoLink,
+    genAttribution: getAttribution()
   },
 }
 

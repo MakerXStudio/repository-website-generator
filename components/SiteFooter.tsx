@@ -66,8 +66,8 @@ export const SiteFooter = (props: SiteFooterProps) => {
       </svg>
       <div className="border-t pt-4 my-4">
         <div className="container mx-auto flex flex-wrap justify-end pt-2 pb-2 relative">
-          <FooterLink slug='https://makerx.com.au' className='absolute left-0' >
-            <img className="object-scale-down w-2/3 z-50" aria-hidden="true" alt="Header image" src='/theme/makerx-logo.png' />
+          <FooterLink slug={configuration.themeImageLogoLink} className="absolute left-0">
+            <img className="object-scale-down w-2/3 z-50" aria-hidden="true" alt="Header image" src={router.basePath + configuration.themeImageLogo} />
           </FooterLink>
           <FooterLink slug="/attribution" name="Attribution" selected={router.asPath.startsWith('/attribution')} />
           {miscellaneousPageLinks.map((p) => (

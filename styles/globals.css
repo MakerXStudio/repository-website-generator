@@ -86,4 +86,8 @@
   .markdown blockquote {
     @apply ml-2 pl-4 py-1 border-l-4 border-l-gray-200 italic
   }
+
+  .markdown code {
+    @apply font-mono text-sm
+  }
 }
