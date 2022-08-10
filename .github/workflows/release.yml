@@ -40,19 +40,6 @@ jobs:
       #- name: Run tests
       #  run: npm test
 
-      - name: Generate documentation
-        run: npm run generate-doc
-
-      - name: Build public website
-        run: npm run build
-
-      - name: Deploy docs to GitHub pages
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          branch: gh-pages
-          folder: ./out
-          clean-exclude: '.nojekyll'
-
       - name: Shrinkwrap the lock file
         run: npm shrinkwrap
 
