@@ -24,6 +24,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Use Node.js latest LTS version
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+          # == Cache frequently built and/or with large dependencies ==
+          # == Eviction policy: not accessed in over 7 days
+          # == Limit: 10 GB
+          # cache: 'npm'
+          # == Path to lock file when using mono repos ==
+          # cache-dependency-path: subdir/package-lock.json
+
       - name: Setup Pages
         uses: actions/configure-pages@v1
 

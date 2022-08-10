@@ -8,11 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [ 16.x, 18.x ]
-
-    name: Build and test with Node ${{ matrix.node-version }}
+    name: Build and test
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
