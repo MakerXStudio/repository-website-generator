@@ -41,8 +41,11 @@ jobs:
       - name: Restore packages
         run: npm ci
 
+      - name: Generate documentation
+        run: npm run generate-doc
+
       - name: Build public website
-        run: npm run generate-website
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
