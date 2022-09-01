@@ -3,6 +3,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { ghcolors as theme } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import ReactMarkdown from 'react-markdown'
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export type MarkdownProps = {
   children: string
@@ -15,6 +16,7 @@ export const Markdown = ({ children, transformLinkUri, transformImageUri, classN
       className={className}
       transformLinkUri={transformLinkUri}
       transformImageUri={transformImageUri}
+      remarkPlugins={[remarkGfm]}
       components={{
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '')
