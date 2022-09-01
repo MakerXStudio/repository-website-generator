@@ -69,6 +69,17 @@ if (parentDirectoryName === '@makerx') {
   console.log(`Repo website gen: ${configJson.readmeFileName ?? 'README.md'} to '${tempDir}'`)
   fs.copyFileSync(readmeFilePath, path.join(tempDir, 'README.md'))
 
+  if (configJson.assetsPath) {
+    const assetsPath = path.resolve(path.join(pathPrefix, configJson.assetsPath))
+
+    if (!fs.existsSync(assetsPath)) {
+      console.error(`Assets directory '${assetsPath}' does not exist. Set 'assetsPath: null' to disable`)
+      process.exit(1)
+    }
+    console.log(`Repo website gen: copying assets to '${path.join(tempDir, 'public')}'`)
+    fse.copySync(assetsPath, path.join(tempDir, 'public'), { overwrite: true })
+  }
+
   if (configJson.miscellaneousPages) {
     const miscellaneousPagesPath = path.resolve(path.join(pathPrefix, configJson.miscellaneousPages.path))
     if (!fs.existsSync(miscellaneousPagesPath)) {

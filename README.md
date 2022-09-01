@@ -149,6 +149,7 @@ The configuration file is a json file named `website-generator.json`, and must b
   "description": null,
   "gitHubUrl": null,
   "soeTags": null,
+  "assetsPath": null,
   "miscellaneousPages": null,
   "codeDocs": null,
   "theme": {
@@ -174,6 +175,7 @@ The configuration file is a json file named `website-generator.json`, and must b
   "description": null,
   "gitHubUrl": null,
   "soeTags": null,
+  "assetsPath": "/public-assets",
   "miscellaneousPages": {
     "path": "/public-pages"
   },
@@ -185,20 +187,22 @@ The configuration file is a json file named `website-generator.json`, and must b
     "imageLogo": "/theme/makerx-logo.png",
     "imageLogoLink": "https://makerx.com.au"
   },
-  "attribution": [{
-    "group": "Referenced packages",
-    "title": "react",
-    "description": "React is a JavaScript library for creating user interfaces.",
-    "license": "MIT",
-    "link": "github.com/facebook/react"
-  },
-  {
-    "group": "Referenced packages",
-    "title": "react-dropzone",
-    "description": "Simple React hook to create a HTML5-compliant drag'n'drop zone for files.",
-    "license": "MIT",
-    "link": "https://github.com/react-dropzone/react-dropzone"
-  }]
+  "attribution": [
+    {
+      "group": "Referenced packages",
+      "title": "react",
+      "description": "React is a JavaScript library for creating user interfaces.",
+      "license": "MIT",
+      "link": "github.com/facebook/react"
+    },
+    {
+      "group": "Referenced packages",
+      "title": "react-dropzone",
+      "description": "Simple React hook to create a HTML5-compliant drag'n'drop zone for files.",
+      "license": "MIT",
+      "link": "https://github.com/react-dropzone/react-dropzone"
+    }
+  ]
 }
 ```
 
@@ -255,6 +259,10 @@ Note: _By default the author is referenced from the package.json field `descript
 The description of the package.
 
 Note: _By default the author is referenced from the package.json field `repository.url`_
+
+### assetsPath (Optional)
+
+A directory containing assets.
 
 ### miscellaneousPages (Optional)
 

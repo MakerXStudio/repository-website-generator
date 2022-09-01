@@ -14,11 +14,15 @@ interface MarkdownPageProps {
 }
 
 const MarkdownPage = (props: MarkdownPageProps) => {
+  const transformImageLinkHandler = (src: string) => {
+    return src.replace('./public/', './')
+  }
+
   return (
     <Page pages={props.pages} title={props.pageMeta.title}>
       <div className="border-b py-8 bg-white">
         <div className="container mx-auto flex flex-wrap pt-4 pb-12">
-          <Markdown>{props.markdown}</Markdown>
+          <Markdown transformImageUri={transformImageLinkHandler}>{props.markdown}</Markdown>
         </div>
       </div>
     </Page>

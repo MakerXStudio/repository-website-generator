@@ -13,6 +13,10 @@ interface IndexPageProps {
 }
 
 const IndexPage = (props: IndexPageProps) => {
+  const transformImageLinkHandler = (src: string) => {
+    return src.replace('./public/', './')
+  }
+
   const titleProps = {
     title: configuration.title,
     titleSuperscript: configuration.titleSuperscript,
@@ -23,7 +27,7 @@ const IndexPage = (props: IndexPageProps) => {
     <Page pages={props.pages} {...titleProps}>
       <div className="border-b py-8 bg-white">
         <div className="container mx-auto flex flex-wrap pt-4 pb-12">
-          <Markdown>{props.markdown}</Markdown>
+          <Markdown transformImageUri={transformImageLinkHandler}>{props.markdown}</Markdown>
         </div>
       </div>
     </Page>
