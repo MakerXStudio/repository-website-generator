@@ -8,6 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+
     name: Build and test
     steps:
       - name: Checkout source code
