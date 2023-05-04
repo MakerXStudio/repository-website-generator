@@ -4,6 +4,7 @@ import { ghcolors as theme } from 'react-syntax-highlighter/dist/cjs/styles/pris
 import ReactMarkdown from 'react-markdown'
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeSlug from 'rehype-slug'
 
 export type MarkdownProps = {
   children: string
@@ -16,6 +17,7 @@ export const Markdown = ({ children, transformLinkUri, transformImageUri, classN
       className={className}
       transformLinkUri={transformLinkUri}
       transformImageUri={transformImageUri}
+      rehypePlugins={[rehypeSlug]}
       remarkPlugins={[remarkGfm]}
       components={{
         code({ node, inline, className, children, ...props }) {
